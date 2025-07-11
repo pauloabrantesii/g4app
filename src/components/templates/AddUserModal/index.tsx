@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Image, Modal, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { maskPhone } from '../../../helper/mask';
 import { styles } from './styles';
 
 interface AddUserModalProps {
@@ -38,7 +39,7 @@ const AddUserModal = ({ visible, onClose, onSave }: AddUserModalProps) => {
             style={styles.input}
             placeholder="Telefone"
             value={phone}
-            onChangeText={setPhone}
+            onChangeText={text => setPhone(maskPhone(text))}
             keyboardType="phone-pad"
           />
           <View style={styles.buttonRow}>
