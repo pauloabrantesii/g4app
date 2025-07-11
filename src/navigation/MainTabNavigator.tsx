@@ -3,6 +3,7 @@ import React from 'react';
 import { Image } from 'react-native';
 import FavoritesContainer from '../containers/FavoritesContainer';
 import HomeContainer from '../containers/HomeContainer';
+import PhoneContainer from '../containers/PhoneContainer';
 import { colors } from '../utils/colors';
 import { MainTabParamList } from './types';
 
@@ -22,10 +23,10 @@ const MainTabNavigator: React.FC = () => {
     >
       <Tab.Screen
         name="Telephone"
-        component={HomeContainer}
+        component={PhoneContainer}
         options={{
           tabBarLabel: 'Ligação',
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: () => (
             <Image source={require('../assets/images/telephone.png')} />
           ),
         }}
@@ -35,7 +36,7 @@ const MainTabNavigator: React.FC = () => {
         component={HomeContainer}
         options={{
           tabBarLabel: 'Home',
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: () => (
             <Image source={require('../assets/images/user.png')} />
           ),
         }}
@@ -45,7 +46,7 @@ const MainTabNavigator: React.FC = () => {
         component={FavoritesContainer}
         options={{
           tabBarLabel: 'Favoritos',
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: () => (
             <Image source={require('../assets/images/heart.png')} />
           ),
         }}
