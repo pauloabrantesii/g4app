@@ -5,8 +5,19 @@ import UserCard from '../../templates/UserCard';
 import { styles } from './styles';
 import { HomeComponentProps } from './types';
 
-const HomeComponent = ({ user }: HomeComponentProps) => {
+const MAPBOX_TOKEN = 'pk.eyJ1IjoicGF1bG9hYnJhbnRlc2lpIiwiYSI6ImNtY3lzcnNmNzBxNGoyanB1a3Y5azRmbWsifQ.EOfnCePVdqnny6_14WUh2g';
+
+interface Props extends HomeComponentProps {
+  coords: { latitude: number; longitude: number } | null;
+}
+
+const HomeComponent = ({ user, coords }: Props) => {
   const { t } = useTranslation();
+  const myLatitude = coords?.latitude;
+
+  const mapUrl = coords
+    ? `https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/${coords.longitude},${coords.latitude},15,0/400x200?access_token=${MAPBOX_TOKEN}`
+    : null;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -16,13 +27,21 @@ const HomeComponent = ({ user }: HomeComponentProps) => {
           <View style={styles.LocationContainer}>
             <View style={styles.LocationContainer}>
               <Image source={require('../../../assets/images/Location.png')} />
-              <Text style={styles.locationText}>A5874125</Text>
+              <Text style={styles.locationText}>{myLatitude}</Text>
             </View>
           </View>
         </View>
       </View>
       <View style={styles.geoLocationContainer}>
-        <Image source={require('../../../assets/images/geolocation.png')} />
+        {mapUrl ? (
+          <Image
+            source={{ uri: mapUrl }}
+            style={{ width: 400, height: 200, borderRadius: 12 }}
+            resizeMode="cover"
+          />
+        ) : (
+          <Text>Obtendo localização...</Text>
+        )}
       </View>
       <View style={styles.userCardContainer}>
             <UserCard title={t('home.register')} onPress={() => {}} />
