@@ -5,4 +5,4 @@ export interface ButtonProps extends TouchableOpacityProps {
   variant?: 'primary' | 'secondary' | 'outline' | 'accent';
   size?: 'small' | 'medium' | 'large';
   isLoading?: boolean;
-} 
+}

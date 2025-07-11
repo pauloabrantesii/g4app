@@ -7,11 +7,11 @@ const ForgotPasswordContainer = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [feedback, setFeedback] = useState<string | null>(null);
 
-  const handleForgotPassword = (formData: { email: string }) => {
+  const handleForgotPassword = () => {
     setIsLoading(true);
     setFeedback(null);
 
-    // Simula envio de e-mail (2 segundos)
+    // Simula envio de e-mail já que não temos um backend(2 segundos)
     setTimeout(() => {
       setIsLoading(false);
       setFeedback('E-mail de recuperação enviado com sucesso!');

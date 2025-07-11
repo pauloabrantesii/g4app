@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Platform, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import { useTranslation } from '../../../hooks/useTranslation';
 import Button from '../../atoms/Button';
 import Input from '../../atoms/Input';
@@ -35,55 +35,62 @@ const LoginComponent = ({
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>{t('login.welcome') as string}</Text>
-        </View>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={styles.container}>
+          <View style={styles.content}>
+            <View style={styles.titleContainer}>
+              <Text style={styles.title}>{t('login.welcome') as string}</Text>
+            </View>
 
-        <View style={styles.form}>
-          <Input
-            placeholder={t('login.loginPlaceholder') as string}
-            value={formData.username}
-            onChangeText={value => handleInputChange('username', value)}
-            keyboardType="email-address"
-            autoCapitalize="none"
-            autoCorrect={false}
-            error={error}
-            errorText={t('login.loginError')}
-          />
+            <View style={styles.form}>
+              <Input
+                placeholder={t('login.loginPlaceholder') as string}
+                value={formData.username}
+                onChangeText={value => handleInputChange('username', value)}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                autoCorrect={false}
+                error={error}
+                errorText={t('login.loginError')}
+              />
 
-          <Input
-            placeholder={t('login.passwordPlaceholder') as string}
-            value={formData.password}
-            onChangeText={value => handleInputChange('password', value)}
-            secureTextEntry
-            autoCapitalize="none"
-            autoCorrect={false}
-            error={error}
-            errorText={t('login.loginError')}
-          />
+              <Input
+                placeholder={t('login.passwordPlaceholder') as string}
+                value={formData.password}
+                onChangeText={value => handleInputChange('password', value)}
+                secureTextEntry
+                autoCapitalize="none"
+                autoCorrect={false}
+                error={error}
+                errorText={t('login.loginError')}
+              />
 
-          <TouchableOpacity
-            style={styles.forgotPasswordContainer}
-            onPress={handleForgotPassword}
-          >
-            <Text style={styles.forgotPasswordText}>
-              {t('login.forgotPassword')}
-            </Text>
-          </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.forgotPasswordContainer}
+                onPress={handleForgotPassword}
+              >
+                <Text style={styles.forgotPasswordText}>
+                  {t('login.forgotPassword')}
+                </Text>
+              </TouchableOpacity>
 
-          <View style={styles.buttonContainer}>
-            <Button
-              title={t('login.enterButton')}
-              onPress={handleLogin}
-              isLoading={isLoading}
-              disabled={isLoading}
-            />
+              <View style={styles.buttonContainer}>
+                <Button
+                  title={t('login.enterButton')}
+                  onPress={handleLogin}
+                  isLoading={isLoading}
+                  disabled={isLoading}
+                />
+              </View>
+            </View>
           </View>
         </View>
-      </View>
-    </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
 

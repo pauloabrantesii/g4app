@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Platform, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { scaleSize } from '../../../helper/responsive';
 import { useTranslation } from '../../../hooks/useTranslation';
 import Button from '../../atoms/Button';
@@ -42,48 +42,53 @@ const ForgotPasswordComponent = ({
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>{t('login.welcome')}</Text>
-        </View>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={styles.container}>
+          <View style={styles.content}>
+            <View style={styles.titleContainer}>
+              <Text style={styles.title}>{t('login.welcome')}</Text>
+            </View>
 
-        <View style={styles.form}>
-          <Input
-            placeholder={'e-mail'}
-            value={formData.email}
-            onChangeText={value => handleInputChange('email', value)}
-            keyboardType="email-address"
-            autoCapitalize="none"
-            autoCorrect={false}
-            error={error}
-            errorText={t('login.loginError')}
-          />
+            <View style={styles.form}>
+              <Input
+                placeholder={'e-mail'}
+                value={formData.email}
+                onChangeText={value => handleInputChange('email', value)}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                autoCorrect={false}
+                error={error}
+                errorText={t('login.loginError')}
+              />
 
-          <View style={styles.buttonContainer}>
-            <Button
-              title={
-                isLoading ? t('login.sendingButton') : t('login.sendButton')
-              }
-              onPress={handleLogin}
-              isLoading={isLoading}
-              disabled={isLoading}
-            />
+              <View style={styles.buttonContainer}>
+                <Button
+                  title={isLoading ? t('login.sendingButton') : t('login.sendButton')}
+                  onPress={handleLogin}
+                  isLoading={isLoading}
+                  disabled={isLoading}
+                />
+              </View>
+              {feedback && (
+                <Text
+                  style={{
+                    color: 'green',
+                    textAlign: 'center',
+                    marginTop: scaleSize(16),
+                  }}
+                >
+                  {feedback}
+                </Text>
+              )}
+            </View>
           </View>
-          {feedback && (
-            <Text
-              style={{
-                color: 'green',
-                textAlign: 'center',
-                marginTop: scaleSize(16),
-              }}
-            >
-              {feedback}
-            </Text>
-          )}
         </View>
-      </View>
-    </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
 
