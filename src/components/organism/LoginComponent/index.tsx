@@ -9,6 +9,8 @@ import { LoginComponentProps, LoginFormData } from './types';
 const LoginComponent = ({
   onLogin,
   handleForgotPassword,
+  togglePasswordVisibility,
+  isPasswordVisible,
   isLoading = false,
   error = false,
 }: LoginComponentProps) => {
@@ -62,11 +64,13 @@ const LoginComponent = ({
                 placeholder={t('login.passwordPlaceholder') as string}
                 value={formData.password}
                 onChangeText={value => handleInputChange('password', value)}
-                secureTextEntry
+                secureTextEntry={!isPasswordVisible}
                 autoCapitalize="none"
                 autoCorrect={false}
                 error={error}
                 errorText={t('login.loginError')}
+                togglePasswordVisibility={togglePasswordVisibility}
+                isPassword={true}
               />
 
               <TouchableOpacity

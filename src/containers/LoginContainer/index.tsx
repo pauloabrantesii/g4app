@@ -13,6 +13,7 @@ const LoginContainer = () => {
   const dispatch = useDispatch();
   const { isLoading } = useSelector((state: AppState) => state.auth);
   const [error, setError] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const handleLogin = async (formData: LoginFormData) => {
     try {
@@ -25,7 +26,7 @@ const LoginContainer = () => {
       };
 
       const response = await api.login(credentials);
-      
+
       if (response.accessToken) {
         await AsyncStorage.setItem('accessToken', response.accessToken);
       }
@@ -33,7 +34,6 @@ const LoginContainer = () => {
       dispatch(setToken(response.accessToken));
       dispatch(setUser(response));
       dispatch(setLoading(false));
-      
     } catch (error: any) {
       console.error('error', error);
       setError(true);
@@ -44,7 +44,20 @@ const LoginContainer = () => {
     navigation.navigate('ForgotPassword' as never);
   };
 
-  return <LoginComponent onLogin={handleLogin} handleForgotPassword={handleForgotPassword} isLoading={isLoading} error={!!error} />;
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
+  return (
+    <LoginComponent
+      onLogin={handleLogin}
+      handleForgotPassword={handleForgotPassword}
+      isLoading={isLoading}
+      isPasswordVisible={isPasswordVisible}
+      error={!!error}
+      togglePasswordVisibility={togglePasswordVisibility}
+    />
+  );
 };
 
 export default LoginContainer;

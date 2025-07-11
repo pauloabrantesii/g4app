@@ -5,4 +5,7 @@ export interface InputProps extends TextInputProps {
   error?: boolean;
   containerStyle?: any;
   errorText?: string;
+  isPassword?: boolean;
+  isPasswordVisible?: boolean;
+  togglePasswordVisibility?: () => void;
 }

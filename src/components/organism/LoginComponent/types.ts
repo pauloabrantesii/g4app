@@ -11,5 +11,7 @@ export interface LoginComponentProps {
   onLogin: (formData: LoginFormData) => void;
   handleForgotPassword: () => void;
   isLoading?: boolean;
+  isPasswordVisible?: boolean;
   error?: boolean;
+  togglePasswordVisibility: () => void;
 }
