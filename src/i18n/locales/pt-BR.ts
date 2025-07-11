@@ -5,6 +5,8 @@ export const ptBR = {
     passwordPlaceholder: 'Senha',
     forgotPassword: 'Redefinir senha',
     enterButton: 'ENTRAR',
+    sendButton: 'ENVIAR',
+    sendingButton: 'Enviando...',
     noAccount: 'Não tem uma conta?',
     createAccount: 'Criar conta',
     loginError: 'Erro ao fazer login',

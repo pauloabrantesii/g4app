@@ -4,10 +4,12 @@ export type RootStackParamList = {
   CustomerDetail: {
     customerId: string;
   };
+  ForgotPassword: undefined;
 };
 
 export type MainTabParamList = {
   Home: undefined;
-  Favorites: undefined;
+  Profile: undefined;
   Telephone: undefined;
-}; 
+  Favorites: undefined;
+};

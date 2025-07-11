@@ -48,17 +48,6 @@ export class ApiService {
     );
   }
 
-  public async testConnection() {
-    try {
-      console.log('Testando conexão com a API...');
-      const response = await this.api.get('/users/1');
-      console.log('Conexão OK:', response.status);
-      return true;
-    } catch (error: any) {
-      console.error('Erro na conexão:', error.message);
-      return false;
-    }
-  }
 
   public async login(credentials: LoginCredentials) {
     try {
@@ -76,7 +65,6 @@ export class ApiService {
         status: error.response?.status,
         statusText: error.response?.statusText,
       });
-      // LANÇAR O ERRO para que o try/catch funcione
       throw error;
     }
   }

@@ -8,6 +8,8 @@ export const enUS = {
     noAccount: "Don't have an account?",
     createAccount: 'Create account',
     loginError: 'Login error',
+    sendButton: 'SEND',
+    sendingButton: 'Sending...',
     emailRequired: 'Please enter your email',
     passwordRequired: 'Please enter your password',
     passwordMinLength: 'Password must be at least 6 characters',

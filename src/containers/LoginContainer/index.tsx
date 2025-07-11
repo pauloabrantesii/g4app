@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginComponent from '../../components/organism/LoginComponent';
@@ -7,8 +8,8 @@ import api from '../../services/api';
 import { AppState } from '../../store';
 import { setLoading, setToken, setUser } from '../../store/authSlice';
 import { LoginCredentials } from '../../types';
-
 const LoginContainer = () => {
+  const navigation = useNavigation();
   const dispatch = useDispatch();
   const { isLoading } = useSelector((state: AppState) => state.auth);
   const [error, setError] = useState(false);
@@ -39,8 +40,11 @@ const LoginContainer = () => {
       dispatch(setLoading(false));
     }
   };
+  const handleForgotPassword = async () => {
+    navigation.navigate('ForgotPassword' as never);
+  };
 
-  return <LoginComponent onLogin={handleLogin} isLoading={isLoading} error={!!error} />;
+  return <LoginComponent onLogin={handleLogin} handleForgotPassword={handleForgotPassword} isLoading={isLoading} error={!!error} />;
 };
 
 export default LoginContainer;

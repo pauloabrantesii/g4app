@@ -18,7 +18,6 @@ const FavoritesContainer = () => {
     phone: string;
     image: string;
   }) => {
-    console.log('user', user);
     dispatch(addUser(user));
   };
 

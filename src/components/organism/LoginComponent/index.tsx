@@ -8,6 +8,7 @@ import { LoginComponentProps, LoginFormData } from './types';
 
 const LoginComponent = ({
   onLogin,
+  handleForgotPassword,
   isLoading = false,
   error = false,
 }: LoginComponentProps) => {
@@ -17,8 +18,6 @@ const LoginComponent = ({
     username: '',
     password: '',
   });
-
-  console.log('formData', formData);
 
   const handleInputChange = (field: keyof LoginFormData, value: string) => {
     setFormData(prev => ({
@@ -67,16 +66,16 @@ const LoginComponent = ({
 
           <TouchableOpacity
             style={styles.forgotPasswordContainer}
-            onPress={() => {}}
+            onPress={handleForgotPassword}
           >
             <Text style={styles.forgotPasswordText}>
-              {t('login.forgotPassword') as string}
+              {t('login.forgotPassword')}
             </Text>
           </TouchableOpacity>
 
           <View style={styles.buttonContainer}>
             <Button
-              title={t('login.enterButton') as string}
+              title={t('login.enterButton')}
               onPress={handleLogin}
               isLoading={isLoading}
               disabled={isLoading}

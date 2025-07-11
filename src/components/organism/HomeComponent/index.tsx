@@ -7,11 +7,9 @@ import { HomeComponentProps } from './types';
 
 const MAPBOX_TOKEN = 'pk.eyJ1IjoicGF1bG9hYnJhbnRlc2lpIiwiYSI6ImNtY3lzcnNmNzBxNGoyanB1a3Y5azRmbWsifQ.EOfnCePVdqnny6_14WUh2g';
 
-interface Props extends HomeComponentProps {
-  coords: { latitude: number; longitude: number } | null;
-}
 
-const HomeComponent = ({ user, coords }: Props) => {
+
+const HomeComponent = ({ user, coords, onRegisterPress }: HomeComponentProps ) => {
   const { t } = useTranslation();
   const myLatitude = coords?.latitude;
 
@@ -44,7 +42,7 @@ const HomeComponent = ({ user, coords }: Props) => {
         )}
       </View>
       <View style={styles.userCardContainer}>
-            <UserCard title={t('home.register')} onPress={() => {}} />
+            <UserCard title={t('home.register')} onPress={onRegisterPress} />
             <UserCard title={t('home.consultOrganization')} onPress={() => {}} />
       </View>
 

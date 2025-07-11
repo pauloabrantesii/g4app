@@ -9,6 +9,7 @@ export interface LoginFormData {
 
 export interface LoginComponentProps {
   onLogin: (formData: LoginFormData) => void;
+  handleForgotPassword: () => void;
   isLoading?: boolean;
   error?: boolean;
 }
