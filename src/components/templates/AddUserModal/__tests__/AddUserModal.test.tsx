@@ -2,7 +2,7 @@ import { fireEvent, render } from '@testing-library/react-native';
 import React from 'react';
 import AddUserModal from '../index';
 
-// Mock simples do i18n
+// Mock i18n
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => key,

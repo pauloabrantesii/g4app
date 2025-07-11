@@ -2,7 +2,7 @@ import { fireEvent, render } from '@testing-library/react-native';
 import React from 'react';
 import LoginComponent from '../index';
 
-// Mock simples do i18n
+// Mock para o i18n
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => key,
