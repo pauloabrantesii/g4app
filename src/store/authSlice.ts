@@ -3,6 +3,9 @@ import { AuthState, User } from '../types';
 
 const initialState: AuthState = {
   user: null,
+  firstName: null,
+  username: null,
+  lastName: null,
   accessToken: null,
   isLoading: false,
   error: null,
@@ -35,6 +38,6 @@ const authSlice = createSlice({
     },
   },
 });
-
+export const selectUser = (state: any) => state.auth.user;
 export const { setUser, setToken, setLoading, setError, clearError, logout } = authSlice.actions;
 export default authSlice.reducer; 

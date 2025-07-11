@@ -1,7 +1,9 @@
 export interface User {
   id: string;
   email: string;
-  name: string;
+  username: string;
+  firstName: string;
+  lastName: string;
 }
 
 export interface Customer {
@@ -20,6 +22,9 @@ export interface Customer {
 
 export interface AuthState {
   user: User | null;
+  firstName: string | null;
+  username: string | null;
+  lastName: string | null;
   accessToken: string | null;
   isLoading: boolean;
   error: string | null;

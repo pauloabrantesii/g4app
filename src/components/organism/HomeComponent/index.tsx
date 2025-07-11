@@ -3,15 +3,16 @@ import { Image, SafeAreaView, Text, View } from 'react-native';
 import { useTranslation } from '../../../hooks/useTranslation';
 import UserCard from '../../templates/UserCard';
 import { styles } from './styles';
+import { HomeComponentProps } from './types';
 
-const HomeComponent = () => {
+const HomeComponent = ({ user }: HomeComponentProps) => {
   const { t } = useTranslation();
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>{t('home.hello')}, Paulo</Text>
+          <Text style={styles.title}>{t('home.hello')}, {user?.username}</Text>
           <View style={styles.LocationContainer}>
             <View style={styles.LocationContainer}>
               <Image source={require('../../../assets/images/Location.png')} />

@@ -14,7 +14,13 @@ import AddButton from '../../atoms/AddButton';
 import UserInfoCard from '../../molecules/UserInfoCard';
 import { styles } from './styles';
 
-const FavoritesComponent = () => {
+interface User {
+  image: any;
+  name: string;
+  phone: string;
+}
+
+const FavoritesComponent = ({ onAddPress, users }: { onAddPress: () => void, users: User[] }) => {
   const { t } = useTranslation();
   const navigation = useNavigation();
 
@@ -41,20 +47,18 @@ const FavoritesComponent = () => {
           />
         </View>
         <View style={styles.userInfoCardContainer}>
-          <UserInfoCard
-            image={require('../../../assets/images/person.png')}
-            name="John Doe"
-            phone="1234567890"
-          />
-          <UserInfoCard
-            image={require('../../../assets/images/person.png')}
-            name="John Doe"
-            phone="1234567890"
-          />
+          {users?.map((user, idx) => (
+            <UserInfoCard
+              key={idx}
+              image={user.image}
+              name={user.name}
+              phone={user.phone}
+            />
+          ))}
         </View>
       </View>
       <View style={styles.addButtonContainer}>
-        <AddButton onPress={() => {}} />
+        <AddButton onPress={onAddPress} />
       </View>
     </SafeAreaView>
   );
