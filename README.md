@@ -11,7 +11,8 @@ Um aplicativo React Native desenvolvido com Clean Code, SOLID, Redux, navegaçã
 - **Internacionalização**: Suporte a múltiplos idiomas (i18n)
 - **Estado Global**: Redux para gerenciamento de estado
 - **Testes**: Testes unitários para componentes principais
-
+- **Cadastro de contatos em favoritos**: Não tem api para lista contatos, então eles são criados no estado global e salvos na lista
+- **Chamada para contatos cadstrdos**: Não tem api para chamadas ou protocolo de voz sip, a ligação só ocorre se gouver contato na listagem cadastrado
 ## 🛠️ Tecnologias Utilizadas
 
 - React Native
