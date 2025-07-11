@@ -1,97 +1,151 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Desafio G4 - App React Native
 
-# Getting Started
+Um aplicativo React Native desenvolvido com Clean Code, SOLID, Redux, navegação (Stack/Tab), integração com API pública, internacionalização (i18n), estilização via StyleSheet, separação de componentes burros/containers, e testes.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## 🚀 Funcionalidades
 
-## Step 1: Start Metro
+- **Autenticação**: Login com API pública (DummyJSON)
+- **Navegação**: Stack Navigator + Tab Navigator
+- **Geolocalização**: Exibe mapa estático com coordenadas do device
+- **Favoritos**: Cadastro e gerenciamento de usuários favoritos
+- **Internacionalização**: Suporte a múltiplos idiomas (i18n)
+- **Estado Global**: Redux para gerenciamento de estado
+- **Testes**: Testes unitários para componentes principais
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## 🛠️ Tecnologias Utilizadas
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+- React Native
+- TypeScript
+- Redux Toolkit
+- React Navigation
+- React i18next
+- @react-native-community/geolocation
+- React Native Testing Library
+- Jest
 
-```sh
-# Using npm
-npm start
+## 📱 Estrutura do Projeto
 
-# OR using Yarn
-yarn start
+```
+src/
+├── components/
+│   ├── atoms/          # Componentes básicos (Button, Input, etc.)
+│   ├── molecules/      # Componentes compostos
+│   ├── organisms/      # Componentes complexos (Login, Home, etc.)
+│   └── templates/      # Templates reutilizáveis
+├── containers/         # Containers com lógica de negócio
+├── store/             # Redux store e slices
+├── services/          # Serviços de API
+├── hooks/             # Hooks customizados
+├── navigation/        # Configuração de navegação
+├── types/             # Tipos TypeScript
+├── helper/            # Funções utilitárias
+└── assets/            # Imagens e recursos
 ```
 
-## Step 2: Build and run your app
+## 🔧 Pré-requisitos
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+- Node.js (versão 16 ou superior)
+- npm ou yarn
+- React Native CLI
+- Android Studio (para Android)
+- Xcode (para iOS - apenas macOS)
 
-### Android
+## 🚀 Como Executar
 
-```sh
-# Using npm
-npm run android
+### 1. Instalar Dependências
 
-# OR using Yarn
-yarn android
+```bash
+npm install
 ```
 
-### iOS
+### 2. iOS (apenas macOS)
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+```bash
+cd ios
+pod install
+cd ..
+npx react-native run-ios
 ```
 
-Then, and every time you update your native dependencies, run:
+### 3. Android
 
-```sh
-bundle exec pod install
+```bash
+npx react-native run-android
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+## 🔑 Credenciais de Login
 
-```sh
-# Using npm
-npm run ios
+O app utiliza a API pública [DummyJSON](https://dummyjson.com/docs/auth#auth-me) para autenticação.
 
-# OR using Yarn
-yarn ios
+**Credenciais de teste:**
+- **Usuário:** `emilys`
+- **Senha:** `emilyspass`
+
+### Endpoints da API
+
+- **Login:** `POST https://dummyjson.com/auth/login`
+- **Usuário atual:** `GET https://dummyjson.com/auth/me`
+- **Refresh token:** `POST https://dummyjson.com/auth/refresh`
+
+## 🧪 Executar Testes
+
+```bash
+# Executar todos os testes
+npm test
+
+# Executar testes específicos
+npm test -- --testPathPattern="LoginComponent|AddUserModal"
+
+# Executar testes em modo watch
+npm test -- --watch
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## 📋 Funcionalidades Principais
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+### Login
+- Autenticação com username e senha
+- Validação de campos
+- Tratamento de erros
+- Navegação automática após login
+- "Esqueci minha senha"
 
-## Step 3: Modify your app
+### Home
+- Exibição de dados do usuário logado
+- Geolocalização com mapa estático
+- Botões de ação (Cadastrar, Consultar organização)
 
-Now that you have successfully run the app, let's make changes!
+### Favoritos
+- Lista de usuários favoritos
+- Adicionar novos usuários via modal
+- Busca e filtro por nome/telefone
+- Máscara de telefone automática
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+### Navegação
+- Stack Navigator para Login/ForgotPassword
+- Tab Navigator para Home/Favorites/Telephone
+- Navegação automática baseada no estado de autenticação
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+## 🎨 Design System
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+O projeto utiliza uma paleta de cores centralizada:
 
-## Congratulations! :tada:
+```typescript
+export const colors = {
+  primary: '#007AFF',
+  secondary: '#5856D6',
+  background: '#F2F2F7',
+  white: '#FFFFFF',
+  black: '#000000',
+  gray: '#8E8E93',
+  lightGray: '#C7C7CC',
+  error: '#FF3B30',
+  success: '#34C759',
+};
+```
 
-You've successfully run and modified your React Native App. :partying_face:
+## 👨‍💻 Autor
 
-### Now what?
+**Paulo Abrantes**
+- GitHub: [@pauloabrantes](https://github.com/pauloabrantes)
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
 
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
