@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { useTranslation } from '../../../hooks/useTranslation';
 import { colors } from '../../../utils/colors';
+import AddButton from '../../atoms/AddButton';
 import UserInfoCard from '../../molecules/UserInfoCard';
 import { styles } from './styles';
 
@@ -50,8 +51,10 @@ const FavoritesComponent = () => {
             name="John Doe"
             phone="1234567890"
           />
-
         </View>
+      </View>
+      <View style={styles.addButtonContainer}>
+        <AddButton onPress={() => {}} />
       </View>
     </SafeAreaView>
   );

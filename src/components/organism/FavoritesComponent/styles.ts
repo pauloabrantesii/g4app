@@ -6,7 +6,8 @@ import { fonts, fontWeights } from '../../../utils/fonts';
 export const styles = StyleSheet.create({
   container: {
     width: '100%',
-    backgroundColor: colors.background,
+    backgroundColor: colors.white,
+    flex: 1,
   },
   header: {
     flexDirection: 'row',
@@ -47,7 +48,7 @@ export const styles = StyleSheet.create({
   content: {
     width: '100%',
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.background,
     paddingHorizontal: scaleSize(16),
     alignItems: 'center',
   },
@@ -76,28 +77,13 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: scaleSize(20),
   },
-  locationText: {
-    fontFamily: fonts.lato.bold,
-    fontSize: scaleFont(20),
-    fontWeight: fontWeights.bold,
-    color: colors.gray,
-  },
-  titleContainer: {},
-  LocationContainer: {
+  addButtonContainer: {
     width: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  geoLocationContainer: {
-    width: '100%',
-    alignItems: 'center',
-    marginTop: scaleSize(60),
-    marginBottom: scaleSize(40),
-  },
-  userCardContainer: {
-    width: '100%',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: scaleSize(20),
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    position: 'absolute',
+    padding: scaleSize(16),
+    bottom: 0,
+    right: 0,
   },
 });
