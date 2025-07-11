@@ -9,6 +9,7 @@ import { LoginComponentProps, LoginFormData } from './types';
 const LoginComponent = ({
   onLogin,
   isLoading = false,
+  error = false,
 }: LoginComponentProps) => {
   const { t } = useTranslation();
 
@@ -49,6 +50,8 @@ const LoginComponent = ({
             keyboardType="email-address"
             autoCapitalize="none"
             autoCorrect={false}
+            error={error}
+            errorText={t('login.loginError')}
           />
 
           <Input
@@ -58,6 +61,8 @@ const LoginComponent = ({
             secureTextEntry
             autoCapitalize="none"
             autoCorrect={false}
+            error={error}
+            errorText={t('login.loginError')}
           />
 
           <TouchableOpacity

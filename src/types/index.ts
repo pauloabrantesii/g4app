@@ -20,7 +20,7 @@ export interface Customer {
 
 export interface AuthState {
   user: User | null;
-  token: string | null;
+  accessToken: string | null;
   isLoading: boolean;
   error: string | null;
 }

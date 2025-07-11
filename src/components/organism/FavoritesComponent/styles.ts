@@ -6,8 +6,7 @@ import { fonts, fontWeights } from '../../../utils/fonts';
 export const styles = StyleSheet.create({
   container: {
     width: '100%',
-    flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.background,
   },
   header: {
     flexDirection: 'row',
@@ -33,7 +32,7 @@ export const styles = StyleSheet.create({
   },
   backButtonText: {
     fontSize: scaleFont(20),
-    color: colors.primary,
+    color: colors.white,
     fontWeight: fontWeights.bold,
   },
   title: {
@@ -46,11 +45,36 @@ export const styles = StyleSheet.create({
     width: scaleSize(40),
   },
   content: {
+    width: '100%',
     flex: 1,
     backgroundColor: colors.white,
     paddingHorizontal: scaleSize(16),
     alignItems: 'center',
-    justifyContent: 'center',
+  },
+  input: {
+    fontFamily: fonts.roboto.regular,
+    fontSize: scaleFont(16),
+    fontWeight: fontWeights.regular,
+  },
+  inputContainer: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
+    marginTop: scaleSize(20),
+    height: scaleSize(30),
+    borderWidth: 1,
+    borderColor: colors.white,
+    borderRadius: scaleSize(15),
+    paddingHorizontal: scaleSize(10),
+    backgroundColor: colors.white,
+    gap: scaleSize(10),
+  },
+  userInfoCardContainer: {
+    width: '100%',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: scaleSize(20),
   },
   locationText: {
     fontFamily: fonts.lato.bold,

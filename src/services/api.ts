@@ -67,10 +67,8 @@ export class ApiService {
         password: credentials.password,
       });
       const { accessToken } = response.data;
-
       await AsyncStorage.setItem('accessToken', accessToken);
-
-      return response.data; 
+      return response.data;
     } catch (error: any) {
       console.error('Erro detalhado do login:', {
         message: error.message,
@@ -78,6 +76,8 @@ export class ApiService {
         status: error.response?.status,
         statusText: error.response?.statusText,
       });
+      // LANÇAR O ERRO para que o try/catch funcione
+      throw error;
     }
   }
 

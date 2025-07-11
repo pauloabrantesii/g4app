@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Text, View } from 'react-native';
+import { Image, SafeAreaView, Text, View } from 'react-native';
 import { useTranslation } from '../../../hooks/useTranslation';
 import UserCard from '../../templates/UserCard';
 import { styles } from './styles';
@@ -8,7 +8,7 @@ const HomeComponent = () => {
   const { t } = useTranslation();
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.content}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{t('home.hello')}, Paulo</Text>
@@ -28,7 +28,7 @@ const HomeComponent = () => {
             <UserCard title={t('home.consultOrganization')} onPress={() => {}} />
       </View>
 
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -15,6 +15,7 @@ export const ptBR = {
 
   favorites: {
     title: 'Favoritos',
+    search: 'Procurar',
     empty: 'Nenhum favorito encontrado',
     loading: 'Carregando favoritos...',
     error: 'Erro ao carregar favoritos',

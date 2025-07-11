@@ -6,10 +6,10 @@ import { InputProps } from './types';
 
 const Input = ({
   error,
-  containerStyle,
   onFocus,
   onBlur,
   style,
+  errorText,
   ...props
 }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -38,16 +38,23 @@ const Input = ({
     return inputStyle;
   };
 
+  const getPlaceholderColor = () => {
+    if (error) {
+      return colors.error; 
+    }
+    return colors.secondary;
+  };
+
   return (
     <View>
       <TextInput
         style={[getInputStyle(), style]}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        placeholderTextColor={colors.secondary}
+        placeholderTextColor={getPlaceholderColor()}
         {...props}
       />
-      {error && <Text style={styles.error}>{error}</Text>}
+      {error && <Text style={styles.error}>{errorText}</Text>}
     </View>
   );
 };

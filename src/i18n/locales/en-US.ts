@@ -20,6 +20,7 @@ export const enUS = {
 
   favorites: {
     title: 'Favorites',
+    search: 'Search',
     empty: 'No favorites found',
     loading: 'Loading favorites...',
     error: 'Error loading favorites',

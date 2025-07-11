@@ -6,7 +6,7 @@ import { fonts, fontWeights } from '../../../utils/fonts';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: colors.background,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: scaleSize(16),
@@ -30,11 +30,9 @@ export const styles = StyleSheet.create({
       width: 0,
       height: 4,
     },
-    shadowOpacity: 5,
+    shadowOpacity: 0.5,
     shadowRadius: 8,
     elevation: 10,
-    borderWidth: 1,
-    borderColor: colors.border,
   },
   titleContainer: {
 
@@ -63,12 +61,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 24,
     marginBottom: 20,
-  },
-  footerText: {
-    fontFamily: fonts.roboto.regular,
-    fontSize: 14,
-    fontWeight: fontWeights.regular,
-    color: colors.textSecondary,
   },
   createAccountText: {
     fontFamily: fonts.roboto.medium,

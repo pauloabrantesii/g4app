@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     borderColor: colors.primary,
   },
   inputError: {
-    borderColor: colors.borderError,
+    borderColor: colors.error,
   },
   error: {
     fontSize: 12,

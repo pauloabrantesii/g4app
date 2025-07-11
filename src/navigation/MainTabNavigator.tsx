@@ -15,9 +15,7 @@ const MainTabNavigator: React.FC = () => {
         tabBarActiveTintColor: colors.primary,
         tabBarInactiveTintColor: colors.gray[400],
         tabBarStyle: {
-          backgroundColor: colors.surface,
-          borderTopWidth: 1,
-          borderTopColor: colors.border,
+          backgroundColor: colors.white,
         },
         headerShown: false,
       }}

@@ -6,30 +6,31 @@
  */
 
 import React from 'react';
-import { SafeAreaView, StatusBar } from 'react-native';
+import { StatusBar, StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Provider } from 'react-redux';
+import { scaleSize } from './src/helper/responsive';
 import './src/i18n';
 import RootNavigator from './src/navigation/RootNavigator';
 import store from './src/store';
+import { colors } from './src/utils/colors';
 
 const AppWithProviders = () => {
-
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <StatusBar
-        backgroundColor="#FF69B4"
-        barStyle="light-content"
-        hidden={false}
-      />
-      <RootNavigator />
+    <View style={styles.container}>
+      <View style={styles.statusBar}>
+        <StatusBar
+          barStyle="light-content"
+          translucent={false}
+        />
+      </View>
 
-    </SafeAreaView>
+      <RootNavigator />
+    </View>
   );
 };
 
 function App() {
-
   return (
     <Provider store={store}>
       <GestureHandlerRootView style={{ flex: 1 }}>
@@ -38,5 +39,16 @@ function App() {
     </Provider>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FF69B4', // Cor rosa que se estende até o StatusBar
+  },
+  statusBar: {
+    height: scaleSize(56),
+    backgroundColor: colors.primary,
+  },
+});
 
 export default App;
