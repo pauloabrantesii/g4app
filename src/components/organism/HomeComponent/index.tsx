@@ -11,7 +11,7 @@ const MAPBOX_TOKEN = 'pk.eyJ1IjoicGF1bG9hYnJhbnRlc2lpIiwiYSI6ImNtY3lzcnNmNzBxNGo
 
 const HomeComponent = ({ user, coords, onRegisterPress }: HomeComponentProps ) => {
   const { t } = useTranslation();
-  const myLatitude = coords?.latitude;
+  const myLatitude = coords?.latitude || 5367543;
 
   const mapUrl = coords
     ? `https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/${coords.longitude},${coords.latitude},15,0/400x200?access_token=${MAPBOX_TOKEN}`
@@ -38,7 +38,11 @@ const HomeComponent = ({ user, coords, onRegisterPress }: HomeComponentProps ) =
             resizeMode="cover"
           />
         ) : (
-          <Text>Obtendo localização...</Text>
+            <Image
+            source={require('../../../assets/images/geolocation.png')}
+            style={{ width: 400, height: 200, borderRadius: 12 }}
+            resizeMode="cover"
+          />
         )}
       </View>
       <View style={styles.userCardContainer}>

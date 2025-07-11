@@ -63,11 +63,11 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     flexDirection: 'row',
     marginTop: scaleSize(20),
-    height: scaleSize(30),
     borderWidth: 1,
+    paddingHorizontal: scaleSize(10),
     borderColor: colors.white,
     borderRadius: scaleSize(15),
-    paddingHorizontal: scaleSize(10),
+
     backgroundColor: colors.white,
     gap: scaleSize(10),
   },
