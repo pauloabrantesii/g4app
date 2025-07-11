@@ -43,7 +43,7 @@ function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FF69B4', // Cor rosa que se estende até o StatusBar
+    backgroundColor: colors.primary,
   },
   statusBar: {
     height: scaleSize(56),
