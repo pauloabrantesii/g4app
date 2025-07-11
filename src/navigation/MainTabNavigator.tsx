@@ -1,7 +1,8 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import CustomerListContainer from '../containers/CustomerListContainer';
-import ProfileScreen from '../screens/ProfileScreen';
+import { Image } from 'react-native';
+import FavoritesContainer from '../containers/FavoritesContainer';
+import HomeContainer from '../containers/HomeContainer';
 import { colors } from '../utils/colors';
 import { MainTabParamList } from './types';
 
@@ -22,22 +23,32 @@ const MainTabNavigator: React.FC = () => {
       }}
     >
       <Tab.Screen
-        name="Customers"
-        component={CustomerListContainer}
+        name="Telephone"
+        component={HomeContainer}
         options={{
-          tabBarLabel: 'Clientes',
+          tabBarLabel: 'Ligação',
           tabBarIcon: ({ color, size }) => (
-            <TabIcon name="people" color={color} size={size} />
+            <Image source={require('../assets/images/telephone.png')} />
           ),
         }}
       />
       <Tab.Screen
-        name="Profile"
-        component={ProfileScreen}
+        name="Home"
+        component={HomeContainer}
         options={{
-          tabBarLabel: 'Perfil',
+          tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
-            <TabIcon name="person" color={color} size={size} />
+            <Image source={require('../assets/images/user.png')} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Favorites"
+        component={FavoritesContainer}
+        options={{
+          tabBarLabel: 'Favoritos',
+          tabBarIcon: ({ color, size }) => (
+            <Image source={require('../assets/images/heart.png')} />
           ),
         }}
       />
@@ -45,14 +56,4 @@ const MainTabNavigator: React.FC = () => {
   );
 };
 
-// Componente simples para ícones (simulado)
-const TabIcon: React.FC<{ name: string; color: string; size: number }> = ({ 
-  name: _name, 
-  color: _color, 
-  size: _size 
-}) => {
-  // Em um projeto real, você usaria react-native-vector-icons
-  return null;
-};
-
-export default MainTabNavigator; 
+export default MainTabNavigator;

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { scaleSize } from '../../../helper/responsive';
+import { scaleFont, scaleSize } from '../../../helper/responsive';
 import { colors } from '../../../utils/colors';
 import { fonts, fontWeights } from '../../../utils/fonts';
 
@@ -18,7 +18,8 @@ export const styles = StyleSheet.create({
     color: colors.primary,
   },
   content: {
-    width: '100%',
+    width: scaleSize(341),
+    height: scaleSize(340),
     backgroundColor: colors.white,
     padding: scaleSize(16),
     justifyContent: 'center',
@@ -29,7 +30,7 @@ export const styles = StyleSheet.create({
       width: 0,
       height: 4,
     },
-    shadowOpacity: 0.15,
+    shadowOpacity: 5,
     shadowRadius: 8,
     elevation: 10,
     borderWidth: 1,
@@ -44,16 +45,17 @@ export const styles = StyleSheet.create({
     gap: scaleSize(16),
   },
   buttonContainer: {
+    alignItems: 'center',
 
   },
   forgotPasswordContainer: {
     alignItems: 'center',
   },
   forgotPasswordText: {
-    fontFamily: fonts.roboto.medium,
-    fontSize: 14,
-    fontWeight: fontWeights.medium,
-    color: colors.primary,
+    fontFamily: fonts.roboto.regular,
+    fontSize: scaleFont(14),
+    fontWeight: fontWeights.regular,
+    color: colors.gray,
   },
   footer: {
     flexDirection: 'row',

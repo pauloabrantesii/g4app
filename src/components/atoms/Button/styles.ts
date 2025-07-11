@@ -5,12 +5,13 @@ import { fonts, fontWeights } from '../../../utils/fonts';
 
 export const styles = StyleSheet.create({
   container: {
-    borderRadius: scaleSize(4),
+    borderRadius: scaleSize(12),
+    width: scaleSize(214),
+    height: scaleSize(50),
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
     backgroundColor: colors.primaryVariant,
-    height: scaleSize(50),
   },
   content: {
     flexDirection: 'row',
@@ -18,9 +19,9 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontFamily: fonts.roboto.medium,
+    fontFamily: fonts.roboto.bold,
     fontSize: scaleFont(20),
-    fontWeight: fontWeights.medium,
+    fontWeight: fontWeights.bold,
     color: colors.white,
   },
   loadingContainer: {

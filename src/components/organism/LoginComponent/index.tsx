@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
-import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { useTranslation } from '../../../hooks/useTranslation';
 import Button from '../../atoms/Button';
 import Input from '../../atoms/Input';
 import { styles } from './styles';
-import { LoginFormData } from './types';
+import { LoginComponentProps, LoginFormData } from './types';
 
-const LoginComponent = () => {
+const LoginComponent = ({
+  onLogin,
+  isLoading = false,
+}: LoginComponentProps) => {
   const { t } = useTranslation();
-  
+
   const [formData, setFormData] = useState<LoginFormData>({
-    email: '',
+    username: '',
     password: '',
   });
+
+  console.log('formData', formData);
 
   const handleInputChange = (field: keyof LoginFormData, value: string) => {
     setFormData(prev => ({
@@ -21,8 +26,16 @@ const LoginComponent = () => {
     }));
   };
 
+  const handleLogin = () => {
+    try {
+      onLogin(formData);
+    } catch (error) {
+      console.error('Erro ao realizar login:', error);
+    }
+  };
+
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.content}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{t('login.welcome') as string}</Text>
@@ -31,23 +44,23 @@ const LoginComponent = () => {
         <View style={styles.form}>
           <Input
             placeholder={t('login.loginPlaceholder') as string}
-            value={formData.email}
-            onChangeText={(value) => handleInputChange('email', value)}
+            value={formData.username}
+            onChangeText={value => handleInputChange('username', value)}
             keyboardType="email-address"
             autoCapitalize="none"
             autoCorrect={false}
           />
-          
+
           <Input
             placeholder={t('login.passwordPlaceholder') as string}
             value={formData.password}
-            onChangeText={(value) => handleInputChange('password', value)}
+            onChangeText={value => handleInputChange('password', value)}
             secureTextEntry
             autoCapitalize="none"
             autoCorrect={false}
           />
-          
-          <TouchableOpacity 
+
+          <TouchableOpacity
             style={styles.forgotPasswordContainer}
             onPress={() => {}}
           >
@@ -55,19 +68,19 @@ const LoginComponent = () => {
               {t('login.forgotPassword') as string}
             </Text>
           </TouchableOpacity>
-          
+
           <View style={styles.buttonContainer}>
             <Button
               title={t('login.enterButton') as string}
-              onPress={() => {}}
-              isLoading={false}
-              disabled={false}
+              onPress={handleLogin}
+              isLoading={isLoading}
+              disabled={isLoading}
             />
           </View>
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
-export default LoginComponent; 
+export default LoginComponent;

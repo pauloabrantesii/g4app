@@ -3,8 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { useEffect, useState } from 'react';
 import Loading from '../components/Loading';
-import LoginContainer from '../components/organism/LoginComponent';
-import CustomerDetailContainer from '../containers/CustomerDetailContainer';
+import LoginContainer from '../containers/LoginContainer';
 import MainTabNavigator from './MainTabNavigator';
 import { RootStackParamList } from './types';
 
@@ -45,15 +44,6 @@ const RootNavigator: React.FC = () => {
         ) : (
           <>
             <Stack.Screen name="MainTabs" component={MainTabNavigator} />
-            <Stack.Screen 
-              name="CustomerDetail" 
-              component={CustomerDetailContainer}
-              options={{
-                headerShown: true,
-                title: 'Detalhes do Cliente',
-                headerBackTitle: 'Voltar',
-              }}
-            />
           </>
         )}
       </Stack.Navigator>
@@ -61,4 +51,4 @@ const RootNavigator: React.FC = () => {
   );
 };
 
-export default RootNavigator; 
+export default RootNavigator;

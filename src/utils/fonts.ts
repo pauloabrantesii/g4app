@@ -9,23 +9,20 @@ export const fonts = {
     extraBold: 'Roboto-ExtraBold',
     black: 'Roboto-Black',
   },
-  
-  // Fallback para sistemas que não suportam Roboto
-  system: {
-    light: 'System',
-    regular: 'System',
-    medium: 'System',
-    bold: 'System',
-    black: 'System',
+
+  lato: {
+    light: 'Lato-Light',
+    regular: 'Lato-Regular',
+    medium: 'Lato-Medium',
+    bold: 'Lato-Bold',
+    extraBold: 'Lato-ExtraBold',
+    black: 'Lato-Black',
   },
+
 } as const;
 
-// Função para obter a fonte com fallback
-export const getFontFamily = (weight: keyof typeof fonts.roboto = 'regular') => {
-  return fonts.roboto[weight];
-};
 
-// Pesos de fonte pré-definidos
+
 export const fontWeights = {
   light: '300',
   regular: '400',

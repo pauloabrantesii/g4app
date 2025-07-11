@@ -38,14 +38,18 @@ export interface RootState {
 }
 
 export interface LoginCredentials {
-  email: string;
+  username: string;
   password: string;
 }
 
-export interface ApiResponse<T> {
-  data: T;
-  message: string;
-  success: boolean;
+export interface ApiResponse{
+  id: number;
+  username: string;
+  firstName: string;
+  lastName: string;
+  image: string;
+  phone: string;
+  token: string;
 }
 
 export interface NavigationProps {

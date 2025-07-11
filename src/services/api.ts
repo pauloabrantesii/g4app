@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
-import { ApiResponse, Customer, LoginCredentials, User } from '../types';
+import { LoginCredentials } from '../types';
 
 export class ApiService {
   private api: AxiosInstance;
@@ -8,7 +8,7 @@ export class ApiService {
 
   private constructor() {
     this.api = axios.create({
-      baseURL: 'https://jsonplaceholder.typicode.com',
+      baseURL: 'https://dummyjson.com',
       timeout: 10000,
       headers: {
         'Content-Type': 'application/json',
@@ -41,7 +41,6 @@ export class ApiService {
       (response: AxiosResponse) => response,
       (error) => {
         if (error.response?.status === 401) {
-          // Token expirado, redirecionar para login
           AsyncStorage.removeItem('accessToken');
         }
         return Promise.reject(error);
@@ -49,94 +48,39 @@ export class ApiService {
     );
   }
 
-  public async login(credentials: LoginCredentials): Promise<ApiResponse<{ user: User; token: string }>> {
+  public async testConnection() {
     try {
-      // Simulando login com API pública
-      await this.api.post('/users/1', credentials);
-      
-      // Simulando resposta de login
-      const mockUser: User = {
-        id: '1',
-        email: credentials.email,
-        name: 'Usuário Teste',
-      };
-
-      const mockToken = 'mock-jwt-token-' + Date.now();
-
-      await AsyncStorage.setItem('accessToken', mockToken);
-      await AsyncStorage.setItem('user', JSON.stringify(mockUser));
-
-      return {
-        data: { user: mockUser, token: mockToken },
-        message: 'Login realizado com sucesso',
-        success: true,
-      };
-    } catch (error) {
-      throw new Error('Erro ao realizar login');
+      console.log('Testando conexão com a API...');
+      const response = await this.api.get('/users/1');
+      console.log('Conexão OK:', response.status);
+      return true;
+    } catch (error: any) {
+      console.error('Erro na conexão:', error.message);
+      return false;
     }
   }
 
-  public async getCustomers(): Promise<ApiResponse<Customer[]>> {
+  public async login(credentials: LoginCredentials) {
     try {
-      const response = await this.api.get('/users');
-      
-      // Transformando dados da API em formato de Customer
-      const customers: Customer[] = response.data.map((user: any) => ({
-        id: user.id.toString(),
-        name: user.name,
-        email: user.email,
-        phone: `+55 11 99999-${user.id.toString().padStart(4, '0')}`,
-        company: `Empresa ${user.id}`,
-        address: {
-          street: `${user.address?.street || 'Rua Teste'} ${user.id}`,
-          city: user.address?.city || 'São Paulo',
-          state: 'SP',
-          zipCode: '01234-567',
-        },
-      }));
+      const response = await this.api.post('/auth/login', {
+        username: credentials.username,
+        password: credentials.password,
+      });
+      const { accessToken } = response.data;
 
-      return {
-        data: customers,
-        message: 'Clientes carregados com sucesso',
-        success: true,
-      };
-    } catch (error) {
-      throw new Error('Erro ao carregar clientes');
+      await AsyncStorage.setItem('accessToken', accessToken);
+
+      return response.data; 
+    } catch (error: any) {
+      console.error('Erro detalhado do login:', {
+        message: error.message,
+        response: error.response?.data,
+        status: error.response?.status,
+        statusText: error.response?.statusText,
+      });
     }
   }
 
-  public async getCustomerById(id: string): Promise<ApiResponse<Customer>> {
-    try {
-      const response = await this.api.get(`/users/${id}`);
-      
-      const customer: Customer = {
-        id: response.data.id.toString(),
-        name: response.data.name,
-        email: response.data.email,
-        phone: `+55 11 99999-${response.data.id.toString().padStart(4, '0')}`,
-        company: `Empresa ${response.data.id}`,
-        address: {
-          street: `${response.data.address?.street || 'Rua Teste'} ${response.data.id}`,
-          city: response.data.address?.city || 'São Paulo',
-          state: 'SP',
-          zipCode: '01234-567',
-        },
-      };
-
-      return {
-        data: customer,
-        message: 'Cliente carregado com sucesso',
-        success: true,
-      };
-    } catch (error) {
-      throw new Error('Erro ao carregar cliente');
-    }
-  }
-
-  public async logout(): Promise<void> {
-    await AsyncStorage.removeItem('accessToken');
-    await AsyncStorage.removeItem('user');
-  }
 }
 
 export default ApiService.getInstance(); 

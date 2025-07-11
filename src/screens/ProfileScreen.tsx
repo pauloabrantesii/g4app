@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert, StyleSheet, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import Button from '../components/Button';
+import Button from '../components/atoms/Button';
 import { AppDispatch, AppState } from '../store';
 import { logoutUser } from '../store/authSlice';
 import { colors } from '../utils/colors';
